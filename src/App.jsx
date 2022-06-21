@@ -4,14 +4,20 @@ import Navbar from "./components/Navbar/Navbar"
 import UserProfile from "./components/UserProfile/UserProfile"
 import Advertisements from "./components/Advertisements/Advertisements"
 import { codepathUserProfile, firstTweet, navLinks } from "./constants"
+import { useState } from "react"
 
 export default function App() {
+  const [userProfile, setUserProfile] = useState(codepathUserProfile); //can this be var or does it HAVE to be const?
+  const [tweets, setTweets] = useState([firstTweet]);
+  const [tweetText, setTweetText] = useState("");
+
+
   return (
     <div className="app">
-      <Navbar />
+      <Navbar navLinks = {navLinks}/>
       <main>
-        <UserProfile />
-        <Feed />
+        <UserProfile userProfile={codepathUserProfile}/>
+        <Feed tweets = {tweets} setTweets = {setTweets} userProfile = {userProfile} tweetText={tweetText} setTweetText={setTweetText}/>
         <Advertisements />
       </main>
     </div>
